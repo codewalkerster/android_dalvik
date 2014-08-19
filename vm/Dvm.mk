@@ -259,6 +259,10 @@ ifeq ($(dvm_arch),arm)
 		compiler/codegen/arm/ArmRallocUtil.cpp \
 		compiler/template/out/CompilerTemplateAsm-$(dvm_arch_variant).S
   endif
+  # this patch is only for exynos family SOCs
+  ifeq ($(TARGET_BOARD_PLATFORM),exynos5)
+    LOCAL_CFLAGS += -D__ARM_ARCH_EXT_IDIV__=1
+  endif
 endif
 
 ifeq ($(dvm_arch),mips)
